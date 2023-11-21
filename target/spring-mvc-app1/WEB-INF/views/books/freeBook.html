@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/books">Список всех книг</a>
+<br>
+<a>Список всех свободных книг:</a>
+<div th:each="book : ${freebooks}">
+    <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle() + ', ' + book.getAuthor()}">book</a>
+</div>
+<div>
+</div>
+</body>
+</html>

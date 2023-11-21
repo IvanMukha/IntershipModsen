@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<form th:action="@{/books/findByISBN}" method="get">
+    <label for="ISBN">Поиск по ISBN: </label>
+    <input type="text" name="ISBN" id="ISBN"/>
+    <input type="submit" value="Найти"/>
+</form>
+<form th:action="@{/books/findById}" method="get">
+<label for="id">Поиск по ID: </label>
+<input type="text" name="id" id="id"/>
+<input type="submit" value="Найти"/>
+</form>
+<div style="color:red" th:if="${idNotFound}">Книга с таким ID не найдена</div>
+
+<div style="color:red" th:if="${isbnNotFound}">Книга с таким ISBN не найдена</div>
+<br>
+<a>Список всех книг:</a>
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle() + ', ' + book.getAuthor()}">book</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/books/new">Добавить книгу</a>
+<br>
+<a href="/books/freebooks">Список свободных книг</a>
+<br>
+<a href="/people">Список всех читателей</a>
+</body>
+</html>
